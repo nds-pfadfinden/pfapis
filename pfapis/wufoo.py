@@ -1,4 +1,4 @@
-import api.pyfoo
+import pyfoo
 import pandas as pd
 
 
