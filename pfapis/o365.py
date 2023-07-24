@@ -116,7 +116,7 @@ class Utility(AuthenticatedConnection):
 
 class O365(Utility):
 
-    def write_email(self,message:str,subject:str, to:list, cc:list,sender_address=None):
+    def write_email(self,message:str,subject:str, to:list, cc:list,sender_address=None,user=None):
         """ Write an E-Mail
 
         Args:
@@ -128,7 +128,10 @@ class O365(Utility):
 
         """
 
-        url = f"{GRAPH_URL}/me/sendMail"
+        if user:
+            url = f"{GRAPH_URL}/{user}/sendMail"
+        else:
+            url = f"{GRAPH_URL}/me/sendMail"
         data= {}
         content={}
 
