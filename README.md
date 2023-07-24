@@ -3,9 +3,19 @@
 In this repo you can find several api to system, they are use for the BdP LV Nds.
 This Lib is experimental and for other scouts, they are want to interact with these systems.
 
+## Howto install
+
+You can simply install it that way:
+
+```
+pip3 install git+ssh://git@github.com/nds-pfadfinden/pfapis.git
+```
+
+## APIs
+
 These Api ar exists:
 
-## bdp_mv
+### bdp_mv
 
 This API is made for interact with member registration of our club. 
 The System is called Nami. For authentication you need your MV Username and Passwort. 
@@ -16,7 +26,7 @@ The Nami could be import this way:
 from pfapis.bdp_mv import Nami
 ```
 
-## o365
+### o365
 
 This API is made for interact with O365. This file is a wrapper for the MS Graph Api.
 For authentication you need a grap secret key. For generation one key see this manual: https://docs.jamcracker.com/Orion/CSB%20SP/topic/Graph%20API%20Client%20ID%20and%20Graph%20API%20Secret%20Key.html
@@ -28,7 +38,7 @@ The Api can import this way:
 from pfapis.o365 import O365
 ```
 
-## confluence
+### confluence
 
 Confluence is a wiki based software of atlassian. 
 With this api you can edit pages or get information from them. 
@@ -57,4 +67,5 @@ conf.uplaod_data_to_page(page_id=page_id, parent_id=parent_id, title=title, uplo
 
 
 ```
+
 
