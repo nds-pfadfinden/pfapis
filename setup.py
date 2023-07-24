@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-setup(name="Pfadi Apis",
+setup(name="PfadiApis",
       version="0.1",
       description="Internal lib to interact with system in a scouts context",
       author='Umberto Albano',
