@@ -129,7 +129,7 @@ class O365(Utility):
         """
 
         if user:
-            url = f"{GRAPH_URL}/{user}/sendMail"
+            url = f"{GRAPH_URL}/users/{user}/sendMail"
         else:
             url = f"{GRAPH_URL}/me/sendMail"
         data= {}

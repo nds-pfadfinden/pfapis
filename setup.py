@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(name="PfadiApis",
-      version="0.1.1",
+      version="0.1.2",
       description="Internal lib to interact with system in a scouts context",
       author='Umberto Albano',
       author_email='umberto.albano@nds.pfadfinden.de',
