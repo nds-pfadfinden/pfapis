@@ -1,5 +1,6 @@
 import json
 import secrets
+import base64
 
 import requests
 from O365 import Account, Connection, MSGraphProtocol
@@ -144,3 +145,15 @@ class O365(Utility):
         data['message']= content
         data['saveToSentItems'] = True
         self.connection.post(url=url, data=data)
+
+
+    def download_file(self, file_id:str):
+        link = str(base64.urlsafe_b64encode(file_id.encode("utf-8")), "utf-8")
+        print(link)
+        #url = f"{GRAPH_URL}//me/drive/items/{file_id}/content"
+        url = f"{GRAPH_URL}/shares/{link}/listItem"
+        print(url)
+
+        response = self.connection.get(url=url).json()
+        print(response)
+
