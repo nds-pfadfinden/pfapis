@@ -4,7 +4,7 @@ import json
 import requests
 from decouple import config
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class NamiResponseTypeError(Exception):
     pass
@@ -139,7 +139,7 @@ class Nami():
         r = self.s.request('GET',url)
         return _check_response(r)
 
-    def checkForTrainingname(self, memberId, trainingName):
+    def checkForTrainingname(self, memberId, trainingName, gueltigkeit_month:int = None, relation_date=datetime.now()):
         """
         Checks if a member has attended the trainings with the passed name.
         The method returns 'besucht' or 'n. besucht'.
@@ -152,7 +152,13 @@ class Nami():
         trainings = self.trainingById(memberId)
 
         for training in trainings:
-            if training['entries_vstgName'] == trainingName:
+            print(training)
+            if training['entries_baustein'] == trainingName:
+                date = datetime.strptime(training['entries_vstgTag'], "%Y-%m-%d %H:%M:%S")
+                timedelta_training = (relation_date - date).days
+                timedelta = (relation_date - (datetime.now() + timedelta(month = 12))).days
+                print(date)
+                print(days)
                 return 'besucht'
 
         return 'n.besucht'

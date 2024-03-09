@@ -20,4 +20,4 @@ def split_address(address):
     street=address[0:split_index].strip()
     number=address[split_index:].strip()
  
-    return street, address
+    return street, number
