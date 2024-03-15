@@ -139,27 +139,28 @@ class Nami():
         r = self.s.request('GET',url)
         return _check_response(r)
 
-    def checkForTrainingname(self, memberId, trainingName, gueltigkeit_month:int = None, relation_date=datetime.now()):
+    def checkForTrainingname(self, memberId, trainingName, gueltigkeit_month:int = 12, relation_date=datetime.now()):
         """
         Checks if a member has attended the trainings with the passed name.
         The method returns 'besucht' or 'n. besucht'.
 
         @param memberId: ID of the Member
         @param trainingName: Name of the training
+        @param gueltigkeit_month: Defining the validity period in months
+        @param relation_date: The relation Date to calculate the validity.
         @return: return 'besucht' or 'n. besucht'
         """
 
         trainings = self.trainingById(memberId)
 
         for training in trainings:
-            print(training)
             if training['entries_baustein'] == trainingName:
                 date = datetime.strptime(training['entries_vstgTag'], "%Y-%m-%d %H:%M:%S")
                 timedelta_training = (relation_date - date).days
-                timedelta = (relation_date - (datetime.now() + timedelta(month = 12))).days
-                print(date)
-                print(days)
-                return 'besucht'
+                gueltigkeit_days = gueltigkeit_month * 30
+
+                if timedelta_training <= gueltigkeit_days:
+                    return 'besucht'
 
         return 'n.besucht'
 
