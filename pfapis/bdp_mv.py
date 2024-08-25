@@ -77,7 +77,8 @@ class Nami():
 
     def user(self, mitglied_vorname, mitglied_nachname):
         search_params = {"vorname": mitglied_vorname, "nachname": mitglied_nachname}
-        return self.search(search_params, 1)
+        result = self.search(search_params,1)
+        return self.userById(result[0]['entries_id'])
 
     def usersbytaetigkeit(self, taetigkeit_id, method='GET'):
         search_params = {"taetigkeitId": taetigkeit_id}
